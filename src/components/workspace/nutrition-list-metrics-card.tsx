@@ -1,11 +1,12 @@
 "use client";
 
+import { useState, useMemo } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
+
+import { cn } from "@/lib/utils";
 import type { NutritionStatus, NutritionStatusType } from "@/types/type";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { ChevronDownIcon, ChevronUpIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { StatusProgressBar } from "../status-progress-bar";
-
 import BoltIcon from "@/assets/icons/solid/bolt.svg";
 import BoneIcon from "@/assets/icons/solid/bone.svg";
 import BrainIcon from "@/assets/icons/solid/brain.svg";
@@ -13,9 +14,9 @@ import FireIcon from "@/assets/icons/solid/fire.svg";
 import ShieldIcon from "@/assets/icons/solid/shield.svg";
 import RaindropIcon from "@/assets/icons/solid/raindrop.svg";
 import LoveIcon from "@/assets/icons/solid/love.svg";
-import { useState } from "react";
+
 import { Pill } from "../ui/pill";
-import { AnimatePresence, motion } from "motion/react";
+import { StatusProgressBar } from "../status-progress-bar";
 
 const NUTRIENT_METADATA: Record<
   string,
@@ -149,19 +150,19 @@ function NutritionRow(props: NutritionRowProps) {
                 <div className="flex items-center gap-2 capitalize">
                   <div
                     className={cn(
-                      "size-2 rounded-full",
+                      "size-2 rounded-full animate-pulse",
                       status === "critical" && "bg-status-critical",
                       status === "low" && "bg-status-low",
                       status === "normal" && "bg-status-normal"
                     )}
                   />
-                  <span className="text-sm text-muted-foreground">
+                  <span className="text-sm text-neutral-400 dark:text-neutral-400">
                     {nutrient.status}
                   </span>
                 </div>
               </div>
               <div className="space-y-1 text-right">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-neutral-400 dark:text-neutral-400">
                   Minimum Intake
                 </p>
                 <p className="text-lg font-medium font-heading">
@@ -189,18 +190,43 @@ export function NutritionListMetricsCard({
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  // Organize the nutrient list by status: critical, then low, then normal
+  const sortedContent = useMemo(() => {
+    // To preserve original indices for expand/collapse, keep a mapping
+    return [...content]
+      .map((nutrient, origIdx) => ({
+        nutrient,
+        origIdx,
+        status: getProgressStatus(nutrient.percent),
+      }))
+      .sort((a, b) => {
+        const statusOrder: Record<NutritionStatusType, number> = {
+          critical: 0,
+          low: 1,
+          normal: 2,
+        };
+        const aOrder = statusOrder[a.status];
+        const bOrder = statusOrder[b.status];
+        if (aOrder !== bOrder) {
+          return aOrder - bOrder;
+        }
+        // If same status, preserve initial order
+        return a.origIdx - b.origIdx;
+      });
+  }, [content]);
+
   const handleAccordionToggle = (idx: number) => {
     setOpenIndex((curIdx) => (curIdx === idx ? null : idx));
   };
 
   return (
-    <div className="w-full rounded-[12px] bg-white dark:bg-[#212121] divide-black/5 dark:divide-white/5 divide-y px-5">
-      {content.map((nutrient, index) => (
+    <div className="w-full rounded-[12px] bg-white dark:bg-neutral-800 divide-black/5 dark:divide-white/5 divide-y px-5">
+      {sortedContent.map(({ nutrient, origIdx }, displayIdx) => (
         <NutritionRow
-          key={index}
+          key={origIdx}
           nutrient={nutrient}
-          isOpen={openIndex === index}
-          index={index}
+          isOpen={openIndex === origIdx}
+          index={origIdx}
           onToggle={handleAccordionToggle}
         />
       ))}

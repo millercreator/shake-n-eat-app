@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import CalenderSolidIcon from "@/assets/icons/solid/calender.svg";
-import InfoIcon from "@/assets/icons/solid/info.svg";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { NutritionListMetricsCard } from "@/components/workspace/nutrition-list-metrics-card";
 import { nutritionStatusMockData } from "@/data/data";
+import { Button } from "@/components/ui/button";
+
+import CaptureSolidIcon from "@/assets/icons/solid/capture.svg";
 
 function getFormattedToday() {
   const today = new Date();
@@ -24,28 +26,24 @@ export default function Activity() {
 
   return (
     <section className="h-full w-full">
-      <div className="container mx-auto max-w-[580px]">
-        <div className="mx-auto space-y-2 py-15 pb-10 px-6">
-          <div className="flex gap-2 items-center">
-            <CalenderSolidIcon className="size-6 text-muted-foreground" />
-            <p className="font-body text-muted-foreground">{currentDate}</p>
-          </div>
-          <h1 className="text-2xl font-heading font-semibold">
-            Todays’ Nutrition Requirement
-          </h1>
+      <div className="mx-auto space-y-2 py-15 pb-10 px-6">
+        <div className="flex gap-2 items-center">
+          <CalenderSolidIcon className="size-6 text-muted-foreground" />
+          <p className="font-body text-muted-foreground">{currentDate}</p>
         </div>
+        <h1 className="text-2xl font-heading font-semibold">
+          Todays’ Nutrition Requirement
+        </h1>
+      </div>
 
-        <div className="space-y-3 px-3">
-          <Alert variant="info">
-            <InfoIcon className="size-6 text-blue-400" />
-            <AlertDescription>
-              Your body's main fuel. Breaks down into glucose for quick energy
-              to power your brain, muscles, and daily activities.
-            </AlertDescription>
-          </Alert>
-
-          <NutritionListMetricsCard content={nutritionStatusMockData} />
-        </div>
+      <div className="space-y-3 px-3">
+        <Alert variant="info">
+          <AlertDescription>
+            Your body's main fuel. Breaks down into glucose for quick energy to
+            power your brain, muscles, and daily activities.
+          </AlertDescription>
+        </Alert>
+        <NutritionListMetricsCard content={nutritionStatusMockData} />
       </div>
     </section>
   );

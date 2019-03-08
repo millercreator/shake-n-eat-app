@@ -25,7 +25,7 @@ export function StatusProgressBar(props: StatusProgressBarProps) {
   return (
     <div
       className={cn(
-        "h-6 max-w-10 bg-[#F2F2F7] dark:bg-[#2E2E2E] rounded-[6px] overflow-hidden",
+        "h-6 max-w-10 bg-neutral-100 dark:bg-neutral-700 rounded-[6px] overflow-hidden",
         className
       )}
     >
