@@ -1,4 +1,8 @@
+'use client';
+
 import { ReactNode } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   SidebarProvider,
   Sidebar,
@@ -33,19 +37,18 @@ import BrandLogo from "@/assets/brand-logo.svg";
 
 type WorkspaceLayoutProps = { children: ReactNode };
 
-// Example: replace with real logic to track active tab if you add routing!
 const sidebarTabs = [
   {
     key: "activity",
     icon: HomeSolidIcon,
     label: "Activity",
-    href: "#",
+    href: "/workspace/activity",
   },
   {
     key: "suggest-meal",
     icon: PlusSolidIcon,
     label: "Suggest meal",
-    href: "#",
+    href: "/workspace/suggestions",
   },
   {
     key: "insight",
@@ -61,25 +64,23 @@ const sidebarTabs = [
   },
 ];
 
-// Hardcoded active tab key for demonstration (first tab - "Activity")
-const ACTIVE_TAB_KEY = "activity";
-
 export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
+  const pathname = usePathname();
+
   return (
     <MobileNavProvider>
       <TopNav>
         <TopNavContent>
           <BrandLogo className="h-8 w-auto text-primary" />
 
-          <Button type="button">
-            <CaptureSolidIcon className="size-5" />
-            Snap
+          <Button asChild type="button" variant="secondary">
+            <Link href="/workspace/suggestions">Suggest meal</Link>
           </Button>
         </TopNavContent>
       </TopNav>
 
       <SidebarProvider defaultOpen={false}>
-        <AppSidebar />
+        <AppSidebar pathname={pathname} />
         <MobileNavContent className="fixed inset-0 w-screen h-screen min-w-0 bg-neutral-100 dark:bg-neutral-900">
           <div className="container mx-auto max-w-[580px] relative min-h-full">
             <ScrollArea className="h-screen min-h-0 max-h-screen">
@@ -92,7 +93,7 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
             </ScrollArea>
 
             {/* Responsive, absolutely positioned bottom-right button */}
-            <div className="fixed inset-x-0 bottom-6 z-40 flex justify-center pointer-events-none max-md:hidden">
+            <div className="fixed inset-x-0 bottom-6 max-md:bottom-24 z-40 flex justify-center pointer-events-none">
               <div className="w-full max-w-[580px] px-4 sm:px-6 flex justify-end pointer-events-auto">
                 <Button type="button" size="xl">
                   <CaptureSolidIcon className="size-6" />
@@ -109,7 +110,11 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
           {sidebarTabs
             .filter((tab) => tab.key !== "suggest-meal")
             .map((tab) => {
-              const isActive = tab.key === ACTIVE_TAB_KEY;
+              const isActive =
+                tab.href !== "#"
+                  ? pathname === tab.href ||
+                    (pathname?.startsWith(tab.href + "/") && tab.href !== "/")
+                  : false;
               return (
                 <BottomNavItem key={tab.key} asChild isActive={isActive}>
                   <a href={tab.href}>
@@ -125,7 +130,11 @@ export default function WorkspaceLayout({ children }: WorkspaceLayoutProps) {
   );
 }
 
-function AppSidebar() {
+type AppSidebarProps = {
+  pathname: string;
+};
+
+function AppSidebar({ pathname }: AppSidebarProps) {
   return (
     <Sidebar
       collapsible="icon"
@@ -136,8 +145,8 @@ function AppSidebar() {
     >
       <SidebarContent>
         <SidebarHeader>
-          <div className="flex justify-center py-6 w-full">
-            <BrandLogo className="h-8 w-auto text-primary" />
+          <div className="py-6 w-full">
+            <BrandLogo className="h-8 w-auto" />
           </div>
         </SidebarHeader>
 
@@ -145,7 +154,11 @@ function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu className="gap-3">
               {sidebarTabs.map((tab) => {
-                const isActive = tab.key === ACTIVE_TAB_KEY;
+                const isActive =
+                  tab.href !== "#"
+                    ? pathname === tab.href ||
+                      (pathname?.startsWith(tab.href + "/") && tab.href !== "/")
+                    : false;
                 return (
                   <SidebarMenuItem key={tab.key} className="">
                     <SidebarMenuButton

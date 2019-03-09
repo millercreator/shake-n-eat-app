@@ -5,9 +5,6 @@ import CalenderSolidIcon from "@/assets/icons/solid/calender.svg";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { NutritionListMetricsCard } from "@/components/workspace/nutrition-list-metrics-card";
 import { nutritionStatusMockData } from "@/data/data";
-import { Button } from "@/components/ui/button";
-
-import CaptureSolidIcon from "@/assets/icons/solid/capture.svg";
 
 function getFormattedToday() {
   const today = new Date();
