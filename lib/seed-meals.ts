@@ -1,0 +1,160 @@
+import { type Meal, addMeal, getAllMeals } from "./db"
+
+const DEFAULT_MEALS: Meal[] = [
+  {
+    id: "pasta-carbonara",
+    name: "Pasta Carbonara",
+    recipe: "Classic Italian pasta dish with eggs, cheese, and bacon",
+    ingredients: [
+      "400g spaghetti or linguine",
+      "200g bacon or pancetta, diced",
+      "4 large eggs",
+      "100g Pecorino Romano cheese, grated",
+      "Black pepper to taste",
+      "Salt for pasta water",
+    ],
+    steps: [
+      "Bring a large pot of salted water to boil and cook the pasta until al dente",
+      "While pasta cooks, fry the bacon/pancetta over medium heat until crispy, about 5-7 minutes",
+      "In a bowl, whisk together eggs, grated cheese, and plenty of black pepper",
+      "Drain the pasta, reserving 1 cup of pasta water",
+      "Add hot pasta to the bacon pan, remove from heat",
+      "Pour egg mixture over pasta and stir quickly, adding pasta water as needed for creaminess",
+      "Serve immediately with extra cheese and black pepper",
+    ],
+    tags: ["Italian", "Pasta", "Quick", "Comfort Food"],
+    image: "/pasta-carbonara-with-eggs-bacon-and-cheese.jpg",
+    createdAt: Date.now(),
+  },
+  {
+    id: "thai-green-curry",
+    name: "Thai Green Curry",
+    recipe: "Spicy and aromatic Thai green curry with coconut milk",
+    ingredients: [
+      "500g chicken breast or shrimp, cut into chunks",
+      "2 tbsp green curry paste",
+      "400ml coconut milk",
+      "100g Thai eggplant, halved",
+      "1 red bell pepper, sliced",
+      "2 cups Thai basil leaves",
+      "2 tbsp fish sauce",
+      "1 tbsp brown sugar",
+      "2 green chilies",
+    ],
+    steps: [
+      "Heat coconut milk in a large pan over medium-high heat",
+      "Stir in the green curry paste and let it cook for 2 minutes until fragrant",
+      "Add the chicken/shrimp and cook for 5-7 minutes until mostly cooked",
+      "Add eggplant and bell pepper, simmer for 5 minutes",
+      "Add fish sauce and brown sugar, taste and adjust seasoning",
+      "Cook for another 2 minutes until vegetables are tender",
+      "Stir in Thai basil and green chilies just before serving",
+      "Serve over steamed jasmine rice",
+    ],
+    tags: ["Thai", "Spicy", "Asian", "Dinner"],
+    image: "/thai-green-curry-with-vegetables-and-coconut-milk.jpg",
+    createdAt: Date.now() - 1000,
+  },
+  {
+    id: "mediterranean-salad",
+    name: "Mediterranean Salad",
+    recipe: "Fresh and healthy salad with feta, olives, and tomatoes",
+    ingredients: [
+      "2 cups mixed greens",
+      "2 large tomatoes, diced",
+      "1 cucumber, sliced",
+      "1 red onion, thinly sliced",
+      "200g feta cheese, crumbled",
+      "1 cup Kalamata olives",
+      "2 tbsp extra virgin olive oil",
+      "1 tbsp red wine vinegar",
+      "1 tsp dried oregano",
+      "Salt and pepper to taste",
+    ],
+    steps: [
+      "Wash and dry the mixed greens and place in a large bowl",
+      "Add diced tomatoes, cucumber slices, and red onion",
+      "Toss in the Kalamata olives and crumbled feta cheese",
+      "In a small bowl, whisk together olive oil, red wine vinegar, oregano, salt, and pepper",
+      "Pour dressing over salad and toss gently to combine",
+      "Let sit for 5 minutes to allow flavors to meld",
+      "Serve immediately at room temperature",
+    ],
+    tags: ["Healthy", "Salad", "Vegetarian", "Quick"],
+    image: "/mediterranean-salad-with-feta-olives-and-tomatoes.jpg",
+    createdAt: Date.now() - 2000,
+  },
+  {
+    id: "beef-tacos",
+    name: "Beef Tacos",
+    recipe: "Delicious ground beef tacos with fresh toppings",
+    ingredients: [
+      "500g ground beef",
+      "1 onion, diced",
+      "2 cloves garlic, minced",
+      "2 tbsp taco seasoning",
+      "8-10 flour or corn tortillas",
+      "1 cup shredded cheddar cheese",
+      "2 cups shredded lettuce",
+      "2 tomatoes, diced",
+      "1 avocado, sliced",
+      "Salsa to taste",
+      "Sour cream",
+    ],
+    steps: [
+      "Heat a large skillet over medium-high heat",
+      "Brown the ground beef with diced onion and garlic, breaking it up as it cooks, about 5-7 minutes",
+      "Drain excess fat if needed, then add taco seasoning and 1/4 cup water",
+      "Simmer for 3-5 minutes until sauce thickens",
+      "Warm tortillas in a dry skillet or over an open flame for 30 seconds per side",
+      "Fill tortillas with seasoned beef",
+      "Top with cheese, lettuce, tomatoes, avocado, salsa, and sour cream",
+      "Serve immediately while warm",
+    ],
+    tags: ["Mexican", "Quick", "Dinner", "Family Favorite"],
+    image: "/beef-tacos-with-toppings-cheese-and-salsa.jpg",
+    createdAt: Date.now() - 3000,
+  },
+  {
+    id: "lemon-butter-salmon",
+    name: "Lemon Butter Salmon",
+    recipe: "Elegant pan-seared salmon with lemon and butter sauce",
+    ingredients: [
+      "4 salmon fillets (150g each)",
+      "4 tbsp butter",
+      "3 cloves garlic, minced",
+      "Juice of 2 lemons",
+      "Zest of 1 lemon",
+      "2 cups fresh asparagus",
+      "Salt and pepper to taste",
+      "Fresh dill",
+      "1 tbsp olive oil",
+    ],
+    steps: [
+      "Pat salmon fillets dry and season with salt and pepper",
+      "Heat olive oil in a large skillet over medium-high heat",
+      "Sear salmon skin-side up for 4-5 minutes until golden",
+      "Flip and cook for another 3 minutes",
+      "Remove salmon to a plate",
+      "In the same skillet, add butter and minced garlic, cook until fragrant",
+      "Add asparagus and cook for 3-4 minutes until tender-crisp",
+      "Return salmon to the skillet, pour in lemon juice, sprinkle with lemon zest",
+      "Cook for 1 minute, then serve with fresh dill",
+    ],
+    tags: ["Seafood", "Healthy", "Elegant", "Date Night"],
+    image: "/lemon-butter-salmon-with-asparagus-fresh-dill.jpg",
+    createdAt: Date.now() - 4000,
+  },
+]
+
+export async function seedDefaultMeals(): Promise<void> {
+  const existingMeals = await getAllMeals()
+
+  // Only seed if database is empty
+  if (existingMeals.length === 0) {
+    for (const meal of DEFAULT_MEALS) {
+      await addMeal(meal)
+    }
+    console.log("[v0] Seeded 5 default meals into database")
+  }
+}
