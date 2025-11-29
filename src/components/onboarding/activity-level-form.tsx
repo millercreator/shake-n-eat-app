@@ -2,9 +2,14 @@ import Image from "next/image";
 import * as React from "react";
 import { Button } from "../ui/button";
 import { AnimatePresence, motion } from "motion/react";
+import { VideoRewindLoop } from "../video-rewind-loop";
 
 const activityLevels = [
   {
+    video: {
+      src: "/expressions-video/gentle.mp4",
+      alt: "Person sitting at a desk",
+    },
     image: {
       src: "/expressions/gentle.png",
       alt: "Person sitting at a desk",
@@ -14,6 +19,10 @@ const activityLevels = [
     description: "Little or no exercise, lots of sitting during day",
   },
   {
+    video: {
+      src: "/expressions-video/active.mp4",
+      alt: "Person taking a brisk walk",
+    },
     image: {
       src: "/expressions/active.png",
       alt: "Person taking a brisk walk",
@@ -23,6 +32,10 @@ const activityLevels = [
     description: "Light exercise/sports 1-3 days/week or walk often",
   },
   {
+    video: {
+      src: "/expressions-video/energetic-2.mp4",
+      alt: "Person running or exercising",
+    },
     image: {
       src: "/expressions/energetic.png",
       alt: "Person running or exercising",
@@ -98,12 +111,13 @@ export function ActivityLevelForm({
                   }}
                   className="absolute inset-0"
                 >
-                  <Image
-                    src={selectedLevel.image.src}
-                    alt={selectedLevel.image.alt}
-                    fill
-                    className="object-cover"
-                    priority
+                  {/* Custom video looper with rewind effect */}
+                  <VideoRewindLoop
+                    src={
+                      selectedLevel.video?.src ||
+                      selectedLevel.image.src.replace(/\.\w+$/, ".mp4")
+                    }
+                    alt={selectedLevel.video?.alt || selectedLevel.image.alt}
                   />
                 </motion.div>
               )}
@@ -273,7 +287,7 @@ export function ActivityLevelForm({
             disabled={!selected}
             className="bg-white text-black hover:bg-neutral-200 focus:bg-neutral-200 transition-colors"
           >
-            Next
+            Done
           </Button>
         </div>
       </form>

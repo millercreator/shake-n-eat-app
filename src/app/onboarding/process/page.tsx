@@ -44,12 +44,12 @@ export default function ProcessPage() {
   const StepComponent = step.component;
 
   const isActivityStep = step.key === "ACTIVITY";
-
+// bg-[#F07F52]
   return (
     <section
       className={cn(
         "px-6 transition-colors duration-500 bg-background h-svh w-full",
-        isActivityStep && "bg-[#F07F52]"
+        isActivityStep && "bg-[#ea804e]"
       )}
     >
       {/* Progress Stepper */}
