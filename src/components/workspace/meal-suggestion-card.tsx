@@ -1,6 +1,7 @@
 import Image from "next/image";
 import PieChartIcon from "@/assets/icons/solid/piechart.svg";
 import { Skeleton } from "@/components/ui/skeleton";
+import { MealDetailsDialog } from "./meal-details-dialog";
 
 type MealSuggestion = {
   image: {
@@ -42,40 +43,42 @@ type MealSuggestionCardProps = {
 
 export function MealSuggestionCard({ suggestion }: MealSuggestionCardProps) {
   return (
-    <div className="space-y-2 text-sm">
-      <div className="bg-white dark:bg-neutral-800 rounded-[8px] p-2">
-        <div className="aspect-square relative">
-          <Image
-            fill
-            src={suggestion.image.src}
-            alt={suggestion.image.alt}
-            className="object-contain select-none"
-            sizes="(max-width: 640px) 100vw, 280px"
-            priority={false}
-            draggable={false}
-          />
-        </div>
-      </div>
-      <div className="space-y-1">
-        <div className="flex w-full justify-between items-center">
-          <p className="text-muted-foreground">
-            {formatTimeHuman(suggestion.prepTimeSeconds)}
-          </p>
-          <div className="flex items-center gap-1 text-primary">
-            <PieChartIcon
-              className="inline size-4"
-              aria-label="Nutrition satisfaction"
+    <MealDetailsDialog>
+      <div className="space-y-2 text-sm">
+        <div className="bg-white dark:bg-neutral-800 rounded-[8px] p-2">
+          <div className="aspect-square relative">
+            <Image
+              fill
+              src={suggestion.image.src}
+              alt={suggestion.image.alt}
+              className="object-contain select-none"
+              sizes="(max-width: 640px) 100vw, 280px"
+              priority={false}
+              draggable={false}
             />
-            <span className="inline">
-              {suggestion.nutritionSatisfactionPercent}%
-            </span>
           </div>
         </div>
-        <p className="line-clamp-1 font-medium" title={suggestion.name}>
-          {suggestion.name}
-        </p>
+        <div className="space-y-1">
+          <div className="flex w-full justify-between items-center">
+            <p className="text-muted-foreground">
+              {formatTimeHuman(suggestion.prepTimeSeconds)}
+            </p>
+            <div className="flex items-center gap-1 text-primary">
+              <PieChartIcon
+                className="inline size-4"
+                aria-label="Nutrition satisfaction"
+              />
+              <span className="inline">
+                {suggestion.nutritionSatisfactionPercent}%
+              </span>
+            </div>
+          </div>
+          <p className="line-clamp-1 font-medium" title={suggestion.name}>
+            {suggestion.name}
+          </p>
+        </div>
       </div>
-    </div>
+    </MealDetailsDialog>
   );
 }
 
@@ -84,7 +87,10 @@ export function MealSuggestionCard({ suggestion }: MealSuggestionCardProps) {
  */
 export function MealSuggestionCardSkeleton() {
   return (
-    <div className="space-y-2 text-sm" data-slot="meal-suggestion-card-skeleton">
+    <div
+      className="space-y-2 text-sm"
+      data-slot="meal-suggestion-card-skeleton"
+    >
       <div className="bg-white dark:bg-neutral-800 rounded-[8px] p-2">
         <div className="aspect-square relative">
           <Skeleton className="absolute inset-0 w-full h-full rounded-md" />
