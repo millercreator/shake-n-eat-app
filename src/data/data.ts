@@ -361,4 +361,59 @@ export const cookingStepsData: CookingStep[] = [
     text: "Rinse rice in cold water until water runs clear, then drain",
     completed: false,
   },
+  {
+    id: "10",
+    text: "Blend tomatoes, bell pepper, scotch bonnet, and onion into a smooth paste",
+    completed: false,
+  },
+  {
+    id: "11",
+    text: "Heat vegetable oil in a large pan over medium heat",
+    completed: false,
+  },
+  {
+    id: "12",
+    text: "Add some of the chopped onions and sauté until translucent (about 3 minutes)",
+    completed: false,
+  },
+  {
+    id: "13",
+    text: "Pour in the blended paste and cook, stirring often, until reduced and deep red (10-15 minutes)",
+    completed: false,
+  },
+  {
+    id: "14",
+    text: "Add concentrated tomato paste and cook for another 5 minutes",
+    completed: false,
+  },
+  {
+    id: "15",
+    text: "Add rice, chicken stock, seasoning, and spices to the sauce and stir to incorporate",
+    completed: false,
+  },
+  {
+    id: "16",
+    text: "Cover pan tightly with foil or a lid and cook on low until the rice is just tender (20-25 minutes)",
+    completed: false,
+  },
+  {
+    id: "17",
+    text: "Remove lid, fluff the rice, and allow any excess liquid to evaporate",
+    completed: false,
+  },
+  {
+    id: "18",
+    text: "Taste and adjust seasoning if needed",
+    completed: false,
+  },
+  {
+    id: "19",
+    text: "Slice plantains, fry in hot oil until golden on both sides, then drain on paper towel",
+    completed: false,
+  },
+  {
+    id: "20",
+    text: "Serve rice with grilled chicken and fried plantains. Garnish as desired.",
+    completed: false,
+  },
 ];
