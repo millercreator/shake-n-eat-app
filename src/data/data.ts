@@ -1,4 +1,11 @@
 import { NutritionStatus } from "@/types/type";
+import { Ingredient } from "@/components/workspace/ingredients-table";
+
+export type CookingStep = {
+  id: string;
+  text: string;
+  completed: boolean;
+};
 
 export const restrictionOptions = [
   {
@@ -237,5 +244,121 @@ export const nutritionStatusMockData: NutritionStatus = [
         "You’re getting enough fiber, which helps digestion, heart health, and keeps you feeling full.",
       status: "success",
     },
+  },
+];
+
+// Ingredients data for meal details
+export const ingredientsData: Ingredient[] = [
+  {
+    id: "1",
+    name: "Rice",
+    image: "/ingredients/ingredient-01.png",
+    measurement: "899 grams",
+    nutrition: {
+      type: "Carbohydrate",
+    },
+  },
+  {
+    id: "2",
+    name: "Tomato paste",
+    image: "/ingredients/ingredient-02.png",
+    measurement: "200 grams",
+    nutrition: {
+      type: "Vitamins",
+    },
+  },
+  {
+    id: "3",
+    name: "Red bell peppers",
+    image: "/ingredients/ingredient-03.png",
+    measurement: "32 grams",
+    nutrition: {
+      type: "Vitamins",
+    },
+  },
+  {
+    id: "4",
+    name: "Scotch bonnet peppers",
+    image: "/ingredients/ingredient-04.png",
+    measurement: "40 grams",
+    nutrition: {
+      type: "Vitamins",
+    },
+  },
+  {
+    id: "5",
+    name: "Large onion (chopped)",
+    image: "/ingredients/ingredient-05.png",
+    measurement: "500 grams",
+    nutrition: {
+      type: "Fiber",
+    },
+  },
+  {
+    id: "6",
+    name: "Chicken stock",
+    image: "/ingredients/ingredient-06.png",
+    measurement: "320 grams",
+    nutrition: {
+      type: "Protein",
+    },
+  },
+  {
+    id: "7",
+    name: "Vegetable oil",
+    image: "/ingredients/ingredient-07.png",
+    measurement: "3 tbsp",
+    nutrition: {
+      type: "Fat",
+    },
+  },
+];
+
+// Cooking instructions data for meal details
+export const cookingStepsData: CookingStep[] = [
+  {
+    id: "1",
+    text: "Wash chicken pieces and pat dry",
+    completed: false,
+  },
+  {
+    id: "2",
+    text: "Mix curry, thyme, crushed stock cubes, ginger-garlic paste, oil, salt, and pepper in a bowl",
+    completed: false,
+  },
+  {
+    id: "3",
+    text: "Rub marinade all over chicken pieces",
+    completed: false,
+  },
+  {
+    id: "4",
+    text: "Cover and refrigerate for 30 minutes (or overnight for deeper flavor)",
+    completed: false,
+  },
+  {
+    id: "5",
+    text: "Preheat oven to 200°C (400°F) or heat grill pan",
+    completed: false,
+  },
+  {
+    id: "6",
+    text: "Place chicken on baking tray or grill pan",
+    completed: false,
+  },
+  {
+    id: "7",
+    text: "Grill for 35-40 minutes, flipping halfway, until golden and cooked through",
+    completed: false,
+  },
+  {
+    id: "8",
+    text: "Set aside and keep warm",
+    completed: false,
+  },
+  {
+    id: "9",
+    text: "Rinse rice in cold water until water runs clear, then drain",
+    completed: false,
   },
 ];

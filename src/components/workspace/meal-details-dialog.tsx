@@ -3,7 +3,6 @@
 import * as React from "react";
 import { AnimatePresence, motion } from "motion/react";
 
-import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/use-media-query";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +11,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogClose,
 } from "@/components/ui/dialog";
 import {
   Drawer,
@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/drawer";
 import Image from "next/image";
 import { Separator } from "../ui/separator";
+import { ScrollArea } from "../ui/scroll-area";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { StopWatchIcon } from "@hugeicons/core-free-icons";
 import { ProgressRing } from "../ui/progress-ring";
@@ -34,10 +35,49 @@ import BrainIcon from "@/assets/icons/solid/brain.svg";
 import BoneIcon from "@/assets/icons/solid/bone.svg";
 import RaindropIcon from "@/assets/icons/solid/raindrop.svg";
 import LoveIcon from "@/assets/icons/solid/love.svg";
+import { CookingInstructions } from "./cooking-instructions";
+import { IngredientsTable } from "./ingredients-table";
+import { ingredientsData, cookingStepsData } from "@/data/data";
 
 type MealDetailsDialogProps = {
   children: React.ReactNode;
 };
+
+function MealDetailsActions({
+  onClose,
+  isDialog = false,
+}: {
+  onClose?: () => void;
+  isDialog?: boolean;
+}) {
+  // You can hook up the mark as eaten with your handler here
+  const handleMarkAsEaten = () => {
+    // Placeholder logic
+    alert("Marked as eaten!");
+    if (onClose) onClose();
+  };
+
+  // For Dialog: use DialogClose, for Drawer: use DrawerClose
+  const CloseComponent = isDialog ? DialogClose : DrawerClose;
+
+  return (
+    <div className="flex flex-row w-full gap-3 px-6 py-4 border-t bg-background ">
+      <CloseComponent asChild>
+        <Button className="flex-1" variant="outline">
+          Close
+        </Button>
+      </CloseComponent>
+      <Button
+        className="flex-1"
+        variant="default"
+        onClick={handleMarkAsEaten}
+        tabIndex={0}
+      >
+        Mark as Eaten
+      </Button>
+    </div>
+  );
+}
 
 export function MealDetailsDialog({ children }: MealDetailsDialogProps) {
   const [open, setOpen] = React.useState(false);
@@ -53,13 +93,24 @@ export function MealDetailsDialog({ children }: MealDetailsDialogProps) {
             {children}
           </div>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[558px]">
-          <DialogHeader>
+        <DialogContent className="sm:max-w-[558px] max-h-[90vh] p-0 !grid-rows-[auto_1fr] overflow-hidden">
+          <DialogHeader className="px-6 pt-6 pb-0">
             <DialogTitle className="sr-only">Meal details</DialogTitle>
           </DialogHeader>
-          <MealInfo />
-          <Separator className="my-0" />
-          <NutritionProgress />
+          <ScrollArea className="px-6 h-full min-h-0">
+            <div className="space-y-0 pb-6">
+              <MealInfo />
+              <Separator className="my-5" />
+              <NutritionProgress />
+              <Separator className="my-5" />
+              <IngredientsTable ingredients={ingredientsData} />
+              <Separator className="my-5" />
+              <CookingInstructions steps={cookingStepsData} />
+            </div>
+          </ScrollArea>
+          <div className="sticky bottom-0 left-0 right-0 z-20 mt-auto">
+            <MealDetailsActions isDialog />
+          </div>
         </DialogContent>
       </Dialog>
     );
@@ -72,19 +123,23 @@ export function MealDetailsDialog({ children }: MealDetailsDialogProps) {
           {children}
         </div>
       </DrawerTrigger>
-      <DrawerContent>
-        <DrawerHeader className="text-left">
+      <DrawerContent className="flex flex-col !h-[80vh] max-h-[80vh] overflow-hidden">
+        <DrawerHeader className="text-left flex-shrink-0">
           <DrawerTitle>Meal details</DrawerTitle>
         </DrawerHeader>
-        <div className="px-4 space-y-5">
-          <MealInfo />
-          <NutritionProgress />
+        <div className="flex-1 min-h-0 overflow-hidden">
+          <ScrollArea className="h-full">
+            <div className="px-4 space-y-5 pb-4">
+              <MealInfo />
+              <NutritionProgress />
+              <IngredientsTable ingredients={ingredientsData} />
+              <CookingInstructions steps={cookingStepsData} />
+            </div>
+          </ScrollArea>
         </div>
-        <DrawerFooter className="pt-2">
-          <DrawerClose asChild>
-            <Button variant="outline">Close</Button>
-          </DrawerClose>
-        </DrawerFooter>
+        <div className="sticky bottom-0 left-0 right-0 z-20 mt-auto">
+          <MealDetailsActions />
+        </div>
       </DrawerContent>
     </Drawer>
   );
