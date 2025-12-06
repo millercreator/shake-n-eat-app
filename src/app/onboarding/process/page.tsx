@@ -49,13 +49,13 @@ export default function ProcessPage() {
     <section
       className={cn(
         "px-6 transition-colors duration-500 bg-background min-h-svh h-auto w-full",
-        isActivityStep && "bg-[#ea804e]"
+        isActivityStep && "bg-[#c2653b]"
       )}
     >
       {/* Progress Stepper */}
       <section className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-colors duration-500",
-        isActivityStep ? "bg-[#ea804e]" : "bg-background"
+        isActivityStep ? "bg-[#c2653b]" : "bg-background"
       )}>
         <div className="container max-w-[132px] mx-auto py-10">
           <FormStepper
