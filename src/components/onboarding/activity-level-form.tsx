@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import * as React from "react";
 import { Button } from "../ui/button";
 import { AnimatePresence, motion } from "motion/react";
@@ -7,7 +8,7 @@ import { VideoRewindLoop } from "../video-rewind-loop";
 const activityLevels = [
   {
     video: {
-      src: "/expressions-video/gentle.mp4",
+      src: "/expressions-video-new/gentle.mp4",
       alt: "Person sitting at a desk",
     },
     image: {
@@ -20,7 +21,7 @@ const activityLevels = [
   },
   {
     video: {
-      src: "/expressions-video/active.mp4",
+      src: "/expressions-video-new/active.mp4",
       alt: "Person taking a brisk walk",
     },
     image: {
@@ -33,7 +34,7 @@ const activityLevels = [
   },
   {
     video: {
-      src: "/expressions-video/energetic-2.mp4",
+      src: "/expressions-video-new/energetic.mp4",
       alt: "Person running or exercising",
     },
     image: {
@@ -109,7 +110,7 @@ export function ActivityLevelForm({
                     type: "spring",
                     bounce: 0.45,
                   }}
-                  className="absolute inset-0"
+                  className="absolute inset-0 rounded-full overflow-hidden"
                 >
                   {/* Custom video looper with rewind effect */}
                   <VideoRewindLoop
@@ -283,12 +284,15 @@ export function ActivityLevelForm({
             Back
           </Button>
           <Button
-            type="submit"
+            asChild
+            type="button"
             size="lg"
             disabled={!selected}
             className="bg-white w-1/2 text-black hover:bg-neutral-200 focus:bg-neutral-200 transition-colors"
           >
-            Done
+            <Link href="/workspace/activity" prefetch>
+              Done
+            </Link>
           </Button>
         </div>
       </form>
