@@ -249,16 +249,19 @@ export function MeasurementForm({
           />
         </div>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
+        <div className="flex gap-3 justify-between">
           <Button
             variant="outline"
             size={"lg"}
             type="button"
             onClick={handlePrevClick}
+            className="w-1/2"
           >
             Prev
           </Button>
-          <Button size={"lg"}>Next</Button>
+          <Button size={"lg"} className="w-1/2">
+            Next
+          </Button>
         </div>
       </form>
     </Form>

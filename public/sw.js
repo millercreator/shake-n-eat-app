@@ -1,5 +1,5 @@
-const CACHE_NAME = "shake-n-eat-v1"
-const urlsToCache = ["/", "/offline.html", "/globals.css"]
+const CACHE_NAME = "bearbite-v1"
+const urlsToCache = ["/", "/offline.html", "/styles/globals.css", "/manifest.json"]
 
 self.addEventListener("install", (event) => {
   event.waitUntil(

@@ -135,16 +135,17 @@ export function DietPreferenceForm({
           </ScrollArea>
         </div>
 
-        <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
+        <div className="flex justify-between gap-3 pb-20">
           <Button
             variant="outline"
             size="lg"
             type="button"
             onClick={handlePrevClick}
+            className="w-1/2"
           >
             Back
           </Button>
-          <Button size="lg">Continue</Button>
+          <Button size="lg" className="w-1/2">Condtinue</Button>
         </div>
       </form>
     </Form>

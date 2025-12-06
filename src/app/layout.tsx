@@ -59,33 +59,38 @@ function PWAInstaller() {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://my-coupon-vault.vercel.app/"),
+  metadataBase: new URL("https://bearbite.app/"),
   title: {
-    default: "CouponVault - Secure Digital Coupon Storage & Management",
-    template: "%s | CouponVault",
+    default: "BearBite – Your AI Meal Buddy",
+    template: "%s | BearBite",
   },
   description:
-    "CouponVault is your secure digital coupon vault for storing, managing, and organizing all your digital coupons in one place. Never miss a discount or lose a coupon again.",
-  generator: "CouponVault",
+    "BearBite is your friendly AI-powered nutrition buddy: snap meals, log nutrients, spot deficiencies, and get exactly the right meal suggestions to stay balanced—no stress, just steady wins. It tracks your food, suggests serving sizes and recipes, and keeps your nutrition steady and healthy over time.",
+  generator: "BearBite",
   keywords: [
-    "digital coupons",
-    "coupon vault",
-    "coupon management",
-    "coupon storage",
-    "discounts",
-    "savings",
-    "digital wallet",
-    "coupon organizer",
-    "voucher management",
-    "coupon expiration reminders",
-    "personal finance",
-    "deals",
+    "nutrition tracker",
+    "AI diet coach",
+    "meal logging",
+    "nutrient tracker",
+    "food snap app",
+    "diet app",
+    "protein tracker",
+    "vitamin tracking",
+    "healthy eating",
+    "balanced meals",
+    "AI food recognition",
+    "recipe suggestions",
+    "macro tracker",
+    "personal nutrition",
+    "smart meal planner",
+    "BearBite",
+    "BearBite app",
   ],
   authors: [
-    { name: "Joshua Miller", url: "https://my-coupon-vault.vercel.app/" },
+    { name: "Joshua Miller", url: "https://bearbite.app/" },
   ],
   creator: "Joshua Miller",
-  publisher: "Joshua miller",
+  publisher: "Joshua Miller",
   icons: {
     icon: [
       { url: "/icon-light-32x32.png", media: "(prefers-color-scheme: dark)" },
@@ -95,17 +100,17 @@ export const metadata: Metadata = {
     apple: "/apple-icon.png",
   },
   openGraph: {
-    title: "CouponVault - Secure Digital Coupon Storage & Management",
+    title: "BearBite – Your AI Meal Buddy",
     description:
-      "Safely store, manage, and organize all your digital coupons. Fast, secure, and always accessible—never miss another saving opportunity.",
-    url: "https://my-coupon-vault.vercel.app/",
-    siteName: "CouponVault",
+      "Snap a meal, track your nutrients, and get instant AI meal suggestions to stay balanced. BearBite helps you eat better without stress—just simple, steady progress.",
+    url: "https://bearbite.app/",
+    siteName: "BearBite",
     images: [
       {
         url: "/opengraph-image.png",
         width: 1200,
         height: 630,
-        alt: "CouponVault - Secure Digital Coupon Storage & Management",
+        alt: "BearBite – Your AI Meal Buddy",
       },
     ],
     locale: "en_US",
@@ -113,14 +118,13 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CouponVault - Secure Digital Coupon Storage & Management",
+    title: "BearBite – Your AI Meal Buddy",
     description:
-      "Effortlessly store and organize every digital coupon you receive. Access from anywhere, manage expiration dates, and maximize your savings with CouponVault.",
+      "BearBite tracks what you eat, spots your nutrition gaps, and suggests perfect meals and recipes—just snap, eat, enjoy steady wins. Dieting, simplified.",
     images: ["/twitter-card.png"],
-    creator: "@couponvault",
+    creator: "@bearbiteapp",
   },
-  // themeColor removed, moved to viewport below
-  category: "personal finance",
+  category: "Health & Nutrition",
   robots: {
     index: true,
     follow: true,
@@ -144,7 +148,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#251c16" },
+    { media: "(prefers-color-scheme: light)", color: "#fffcf5" },
+    { media: "(prefers-color-scheme: dark)", color: "#191717" },
   ],
 };

@@ -272,12 +272,13 @@ export function ActivityLevelForm({
           ))}
         </div>
 
-        <div className="flex flex-row gap-3 pt-8 w-full justify-between">
+        <div className="flex justify-between gap-3 pt-8 w-full pb-20">
           <Button
             type="button"
             size="lg"
             variant="outline"
             onClick={handlePrev}
+            className="w-1/2"
           >
             Back
           </Button>
@@ -285,7 +286,7 @@ export function ActivityLevelForm({
             type="submit"
             size="lg"
             disabled={!selected}
-            className="bg-white text-black hover:bg-neutral-200 focus:bg-neutral-200 transition-colors"
+            className="bg-white w-1/2 text-black hover:bg-neutral-200 focus:bg-neutral-200 transition-colors"
           >
             Done
           </Button>

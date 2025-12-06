@@ -14,10 +14,8 @@ import {
 } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 
-import BrandLogo from "@/assets/brand-logo.svg";
-
-const DELICACY_IMAGE_COUNT = 70; // we have many images: delicacy-01.png ... delicacy-70.png
-const VISIBLE_SLIDES = 20; // keep this small to avoid rendering too many at once
+const DELICACY_IMAGE_COUNT = 70;
+const VISIBLE_SLIDES = 20;
 
 function getDelicacySrc(id: number) {
   const padded = id.toString().padStart(2, "0");
@@ -71,15 +69,17 @@ export default function IntroPage() {
           </Carousel>
         </div>
       </div>
-
+      {/* !object-none !object-[center_top]  */}
       <div className="flex flex-col items-center gap-8 pt-0 pb-8 px-4">
-        {/* Back button at the top */}
-        <div className="flex w-full justify-center pt-2">
-          <BrandLogo
-            className="text-primary"
-            width={32}
-            height={32}
-            aria-hidden="true"
+
+        <div className="relative bg-muted rounded-xl size-18 overflow-hidden">
+          <Image
+            priority
+            src="/brand/mascot.png"
+            alt="Mascot"
+            width={172}
+            height={172}
+            className="absolute max-w-none max-h-none block -top-2 left-8.5 -translate-x-1/2"
           />
         </div>
         {/* under-2-mins pill */}
@@ -103,9 +103,7 @@ export default function IntroPage() {
       {/* Start button */}
       <div className="flex justify-center mt-20">
         <Button size="xl" asChild>
-          <Link href="/onboarding/process">
-            Start
-          </Link>
+          <Link href="/onboarding/process" prefetch>Start</Link>
         </Button>
       </div>
     </div>

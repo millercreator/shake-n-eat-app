@@ -48,12 +48,15 @@ export default function ProcessPage() {
   return (
     <section
       className={cn(
-        "px-6 transition-colors duration-500 bg-background h-svh w-full",
+        "px-6 transition-colors duration-500 bg-background min-h-svh h-auto w-full",
         isActivityStep && "bg-[#ea804e]"
       )}
     >
       {/* Progress Stepper */}
-      <section>
+      <section className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-500",
+        isActivityStep ? "bg-[#ea804e]" : "bg-background"
+      )}>
         <div className="container max-w-[132px] mx-auto py-10">
           <FormStepper
             steps={steps.map((s) => s.title)}
@@ -71,7 +74,7 @@ export default function ProcessPage() {
       </section>
 
       {/* Step Content */}
-      <div className="container max-w-[400px] mx-auto">
+      <div className="container max-w-[400px] mx-auto sm:pt-[140px] pt-[80px]">
         <div className="text-center mx-auto space-y-2 py-15">
           <AnimatePresence mode="wait" initial={false}>
             <motion.h1

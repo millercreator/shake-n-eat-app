@@ -1,40 +1,72 @@
 {
-  "name": "Shake 'n Eat - Meal Picker",
-  "short_name": "Shake 'n Eat",
-  "description": "Shake your phone to discover what to eat tonight",
+  "name": "BearBite – Your AI Meal Buddy",
+  "short_name": "BearBite",
+  "description": "BearBite is your friendly AI-powered nutrition buddy: snap meals, log nutrients, spot deficiencies, and get exactly the right meal suggestions to stay balanced—no stress, just steady wins. It tracks your food, suggests serving sizes and recipes, and keeps your nutrition steady and healthy over time.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#ffffff",
+  "background_color": "#fffcf5",
   "theme_color": "#ff6b35",
   "icons": [
     {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
+      "src": "/icon-light-32x32.png",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
+      "src": "/icon-dark-32x32.png",
+      "sizes": "32x32",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/icon-maskable.png",
-      "sizes": "192x192",
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     }
   ],
-  "categories": ["food", "lifestyle"],
+  "categories": [
+    "health",
+    "nutrition",
+    "food",
+    "lifestyle"
+  ],
   "screenshots": [
     {
-      "src": "/screenshot-540.png",
-      "sizes": "540x720",
+      "src": "/opengraph-image.png",
+      "sizes": "1200x630",
       "type": "image/png",
-      "form_factor": "narrow"
+      "form_factor": "wide"
+    },
+    {
+      "src": "/twitter-card.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "dir": "ltr",
+  "lang": "en-US",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Log a meal",
+      "url": "/log",
+      "description": "Quickly log what you've eaten"
+    },
+    {
+      "name": "Suggested meals",
+      "url": "/suggested",
+      "description": "See meal suggestions"
     }
   ]
 }
